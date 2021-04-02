@@ -55,15 +55,13 @@ class _MatchScreenState extends State<MatchScreen> {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     alignment: FractionalOffset.topCenter,
-                    image: MemoryImage(person.picture),
+                    image: NetworkImage(person.imageUrl),
                   )),
             ),
           ),
           title: Text(person.name),
           subtitle: Text(
-            person.gender
-                ? "male"
-                : "female" + " " + person.age.toString() + " years old",
+            person.age.toString() + " years old",
             textScaleFactor: 0.8,
           ),
         ),

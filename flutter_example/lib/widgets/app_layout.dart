@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/services/image_service.dart';
+import 'package:flutter_example/services/person_service.dart';
+import 'package:flutter_example/widgets/explore_screen.dart';
 import 'package:flutter_example/widgets/match_screen.dart';
+import 'package:flutter_example/widgets/test.dart';
 
 class AppLayout extends StatefulWidget {
   @override
@@ -34,7 +36,7 @@ class _AppLayoutState extends State<AppLayout> {
   Widget getPage(int index){
     switch(index){
       case 0: return MatchScreen();
-      case 1: return Text("loading!");
+      case 1: return ExploreScreen();
       case 2: return  Text("loading!");
     }
     return null;

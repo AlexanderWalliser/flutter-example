@@ -32,8 +32,8 @@ class _ChatScreenState extends State<ChatScreen> {
               itemBuilder: (_, int index) =>
                   ChatMessage(
                       message: _messages[index],
-                      myImage: MemoryImage(widget.person.picture),
-                      otherImage: MemoryImage(widget.person.picture)),
+                      myImage: NetworkImage(widget.person.imageUrl),
+                      otherImage: NetworkImage(widget.person.imageUrl)),
               itemCount: _messages.length,
             )),
         Divider(height: 1.0),

@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/match_model.dart';
-import 'package:flutter_example/services/image_service.dart';
+import 'package:flutter_example/services/person_service.dart';
 import 'package:flutter_example/widgets/app_layout.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +18,16 @@ class _AppState extends State<App> {
         Duration(milliseconds: 1500),
         () async => context
             .read<MatchModel>()
-            .add(Person("Test", await ImageService.getImage(), 20, true)));
+            .add(await PersonService.getPerson("female")));
+
+    // Timer(
+    //     Duration(milliseconds: 1500),
+    //         () async {
+    //       var p = Person("Test", await ImageService.getImage("female"), 20, "female");
+    //       var j = p.toJson();
+    //       p = Person.fromJson(j);
+    //       print(p);
+    //     });
 
     // Timer.periodic(
     //     Duration(milliseconds: 1500),
