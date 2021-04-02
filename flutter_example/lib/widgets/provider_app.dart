@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/match_model.dart';
 import 'package:flutter_example/widgets/app.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class _ProviderApp extends State<ProviderApp> {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => MatchModel()),
+      ChangeNotifierProvider(create: (_) => AccountModel())
     ], child: App());
   }
 }
