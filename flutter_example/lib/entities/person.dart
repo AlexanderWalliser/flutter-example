@@ -1,18 +1,21 @@
+import 'package:flutter_example/entities/entity.dart';
+import 'package:flutter_example/entities/message.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
 part 'person.g.dart';
 
 @JsonSerializable()
-class Person{
+class Person implements Entity{
   String id;
   String name;
   int age;
   String gender;
   @JsonKey(name: "image_url")
   String imageUrl;
+  List<Message> messages;
 
 
-  Person(this.name, this.imageUrl, this.age, this.gender): id =  Uuid().v4();
+  Person(this.name, this.imageUrl, this.age, this.gender): id =  Uuid().v4(), messages = [];
 
   @override
   bool operator ==(Object other) {

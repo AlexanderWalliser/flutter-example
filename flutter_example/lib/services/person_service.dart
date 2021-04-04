@@ -16,6 +16,7 @@ class PersonService {
       Person person = Person.fromJson(json.decode(response.body));
       person.id = Uuid().v4();
       person.name = "Test" + (count++).toString();
+      person.messages = [];
       return person;
     } else {
       throw Exception('Failed to load Image');

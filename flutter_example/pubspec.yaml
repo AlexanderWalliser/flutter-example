@@ -17,6 +17,7 @@ dependencies:
   flutter_tindercard: 0.2.0
   image_picker: ^0.6.7+22
   universal_html: ^1.2.3
+  path_provider: ^2.0.1
 
 
 dev_dependencies:

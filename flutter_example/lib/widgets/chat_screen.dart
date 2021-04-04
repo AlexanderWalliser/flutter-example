@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
 import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/account_model.dart';
+import 'package:flutter_example/models/match_model.dart';
 import 'package:flutter_example/services/dialog_flow_service.dart';
 import 'package:flutter_example/widgets/chat_message.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +17,14 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final List<Message> _messages = <Message>[];
   final TextEditingController _textController = new TextEditingController();
+  MatchModel _matchModel;
+
+  @override
+  void initState() {
+    _matchModel = context.read<MatchModel>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +35,23 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(children: <Widget>[
         Flexible(
-            child: ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          reverse: true,
-          itemBuilder: (_, int index) => ChatMessage(
-            message: _messages[index],
-            isMyMessage: _messages[index].author ==
-                context.read<AccountModel>().account.id,
+          child: Selector<MatchModel, List<Message>>(
+            selector: (_, model) => model.getMessagesOfPerson(widget.person.id),
+            builder: (context, value, child) {
+              var messages = value.reversed.toList();
+              return ListView.builder(
+                padding: EdgeInsets.all(8.0),
+                reverse: true,
+                itemBuilder: (_, int index) => ChatMessage(
+                  message: messages[index],
+                  isMyMessage: messages[index].author ==
+                      context.read<AccountModel>().account.id,
+                ),
+                itemCount: messages.length,
+              );
+            },
           ),
-          itemCount: _messages.length,
-        )),
+        ),
         Divider(height: 1.0),
         Container(
           decoration: BoxDecoration(color: Theme.of(context).cardColor),
@@ -77,8 +91,8 @@ class _ChatScreenState extends State<ChatScreen> {
   void _submitMessage(String text) {
     _textController.clear();
     setState(() {
-      _messages.insert(
-          0,
+      _matchModel.addMessage(
+          widget.person.id,
           Message(
               name: context.read<AccountModel>().account.name,
               text: text,
@@ -87,8 +101,8 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     DialogFlowService.getBotResponse(text).then((value) => setState(() {
           _textController.clear();
-          _messages.insert(
-              0,
+          _matchModel.addMessage(
+              widget.person.id,
               Message(
                 name: widget.person.name,
                 text: value,
