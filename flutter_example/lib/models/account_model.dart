@@ -23,7 +23,7 @@ class AccountModel extends ChangeNotifier {
 
   void _newAccount() {
     _account = new Account(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Google_account_icon.svg/1200px-Google_account_icon.svg.png",
+        "https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png",
         "Max Mustermann",
         Gender.male,
         25);
