@@ -5,19 +5,20 @@ import 'package:flutter_example/entities/gender.dart';
 class AccountModel extends ChangeNotifier{
   Account _account;
 
-  Account getAccount(){
-    return _account.copy();
-  }
+  Account get account => _account.copy();
 
-
-  AccountModel(): _account = new Account("assets/ProfilePlaceHolder.jfif",
+  AccountModel(): _account = new Account("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Google_account_icon.svg/1200px-Google_account_icon.svg.png",
       "Max Mustermann",Gender.male,25);
 
-  void setAccount(Account account){
-    this._account.set(account);
+  set account(Account account){
+    this._account.name = account.name;
+    this._account.picturePath = account.picturePath;
+    this._account.age = account.age;
+    this._account.preferedGender = account.preferedGender;
   }
 
-  void setImagePath(String imagePath) {
+  set imagePath(String imagePath){
     this._account.picturePath = imagePath;
+    notifyListeners();
   }
 }

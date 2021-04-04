@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
-import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/account_model.dart';
-import 'package:flutter_example/services/dialog_flow_service.dart';
+import 'package:flutter_example/models/live_chat_model.dart';
 import 'package:flutter_example/widgets/chat_message.dart';
 import 'package:provider/provider.dart';
 
-class ChatScreen extends StatefulWidget {
-  final Person person;
-
-  const ChatScreen({Key key, @required this.person}) : super(key: key);
+class LiveChatScreen extends StatefulWidget {
+  const LiveChatScreen({Key key}) : super(key: key);
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _LiveChatScreenState createState() => _LiveChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
-  final List<Message> _messages = <Message>[];
+class _LiveChatScreenState extends State<LiveChatScreen> {
   final TextEditingController _textController = new TextEditingController();
 
   @override
@@ -24,19 +20,24 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(this.widget.person.name),
+        title: Text("Live Chat"),
       ),
       body: Column(children: <Widget>[
-        Flexible(
-            child: ListView.builder(
-          padding: EdgeInsets.all(8.0),
-          reverse: true,
-          itemBuilder: (_, int index) => ChatMessage(
-            message: _messages[index],
-            isMyMessage: _messages[index].author ==
-                context.read<AccountModel>().account.id,
-          ),
-          itemCount: _messages.length,
+        Flexible(child: Consumer<LiveChatModel>(
+          builder: (context, model, child) {
+            var messages = model.messages.reversed.toList();
+            _textController.clear();
+            return ListView.builder(
+              padding: EdgeInsets.all(8.0),
+              reverse: true,
+              itemBuilder: (_, int index) => ChatMessage(
+                message: messages[index],
+                isMyMessage: messages[index].author ==
+                    context.read<AccountModel>().account.id,
+              ),
+              itemCount: messages.length,
+            );
+          },
         )),
         Divider(height: 1.0),
         Container(
@@ -76,25 +77,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _submitMessage(String text) {
     _textController.clear();
-    setState(() {
-      _messages.insert(
-          0,
-          Message(
-              name: context.read<AccountModel>().account.name,
-              text: text,
-              imageUrl: context.read<AccountModel>().account.picturePath,
-              author: context.read<AccountModel>().account.id));
-    });
-    DialogFlowService.getBotResponse(text).then((value) => setState(() {
-          _textController.clear();
-          _messages.insert(
-              0,
-              Message(
-                name: widget.person.name,
-                text: value,
-                imageUrl: widget.person.imageUrl,
-                author: widget.person.id,
-              ));
-        }));
+    context.read<LiveChatModel>().create(Message(
+        name: context.read<AccountModel>().account.name,
+        text: text,
+        imageUrl: context.read<AccountModel>().account.picturePath,
+        author: context.read<AccountModel>().account.id));
   }
 }

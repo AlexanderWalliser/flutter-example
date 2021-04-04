@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage({this.message, this.myImage, this.otherImage});
+  ChatMessage({@required this.message,@required  this.isMyMessage});
 
   final Message message;
-  final ImageProvider myImage;
-  final ImageProvider otherImage;
+  final bool isMyMessage;
 
   List<Widget> otherMessage(context) {
     return <Widget>[
       Container(
         margin: EdgeInsets.only(right: 16.0),
         child: CircleAvatar(
-            backgroundImage: otherImage,
+            backgroundImage: NetworkImage(message.imageUrl),
         ),
       ),
       Expanded(
@@ -49,7 +48,7 @@ class ChatMessage extends StatelessWidget {
       Container(
         margin: EdgeInsets.only(left: 16.0),
         child: CircleAvatar(
-            backgroundImage: myImage,
+            backgroundImage: NetworkImage(message.imageUrl),
         ),
       ),
     ];
@@ -62,7 +61,7 @@ class ChatMessage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:
-            this.message.type ? myMessage(context) : otherMessage(context),
+            this.isMyMessage ? myMessage(context) : otherMessage(context),
       ),
     );
   }

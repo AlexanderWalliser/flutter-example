@@ -19,7 +19,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    account = Provider.of<AccountModel>(context).getAccount();
+    account = context.watch<AccountModel>().account;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +41,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: getPictureOfAccount(),
+                      image: NetworkImage(account.picturePath),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -155,14 +155,6 @@ class _ProfileScreen extends State<ProfileScreen> {
         ));
   }
 
-  ImageProvider getPictureOfAccount() {
-    if (account.picturePath.contains("assets/ProfilePlaceHolder.jfif")) {
-      return AssetImage("assets/ProfilePlaceHolder.jfif");
-    } else {
-      return FileImage(new File(account.picturePath));
-    }
-  }
-
   String getUserInfo() {
     return account.name + ", " + account.age.toString();
   }
@@ -174,9 +166,9 @@ class _ProfileScreen extends State<ProfileScreen> {
       if (pickedImage != null) {
         String imagePath = pickedImage.path;
         var accountModel = Provider.of<AccountModel>(context, listen: false);
-        accountModel.setImagePath(imagePath);
+        accountModel.imagePath = imagePath;
         setState(() {
-          this.account = accountModel.getAccount();
+          this.account = accountModel.account;
         });
       }
     } catch (e) {}

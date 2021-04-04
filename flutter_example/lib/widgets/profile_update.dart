@@ -20,7 +20,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
   @override
   Widget build(BuildContext context) {
     if(account == null){
-      account = Provider.of<AccountModel>(context, listen: false).getAccount();
+      account =  context.read<AccountModel>().account;
     }
     if(genderValue == ""){
       genderValue =
@@ -61,7 +61,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: getPictureOfAccount(),
+                      image: NetworkImage(account.picturePath),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -110,14 +110,6 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
       ));
   }
 
-  getPictureOfAccount() {
-    if (account.picturePath.contains("assets/ProfilePlaceHolder.jfif")) {
-      return AssetImage("assets/ProfilePlaceHolder.jfif");
-    } else {
-      return FileImage(new File(account.picturePath));
-    }
-  }
-
   goBack() async {
     bool exit = true;
     if (changed == true) {
@@ -154,7 +146,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
 
   save() {
     if (this.changed == true) {
-      Provider.of<AccountModel>(context, listen: false).setAccount(account);
+      context.read<AccountModel>().account = account;
     }
     Navigator.pop(context);
   }
