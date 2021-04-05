@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_example/models/names_model.dart';
 import 'package:flutter_example/models/theme_model.dart';
 import 'package:flutter_example/widgets/app_layout.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    NameModel.init();
   }
 
   @override

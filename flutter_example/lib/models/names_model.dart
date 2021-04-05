@@ -8,27 +8,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_example/entities/gender.dart';
 
-class NameModel extends ChangeNotifier{
+class NameModel {
 
-  List<String> _femaleNames;
-  List<String> _maleNames;
-  List<String> _surname;
-  Random _random;
+  static List<String> _femaleNames;
+  static List<String> _maleNames;
+  static List<String> _surname;
+  static Random _random;
+  static bool _loadFinished = false;
 
-  NameModel()  {
-    (rootBundle.loadString("assets/femaleNames.txt")).then((value) => {
-      this._femaleNames = value.split("\r\n")
+
+  static init()  {
+    (rootBundle.loadString("assets/femaleNames.txt")).then((value) {
+      _femaleNames = value.split("\r\n");
+      if(_maleNames != null && _surname != null){
+        _loadFinished = true;
+      }
     });
-    (rootBundle.loadString("assets/maleNames.txt")).then((value) => {
-      this._maleNames = value.split("\r\n")
+    (rootBundle.loadString("assets/maleNames.txt")).then((value) {
+      _maleNames = value.split("\r\n");
+      if(_femaleNames != null && _surname != null){
+        _loadFinished = true;
+      }
     });
-    (rootBundle.loadString("assets/surNames.txt")).then((value) => {
-      this._surname = value.split("\r\n")
+    (rootBundle.loadString("assets/surNames.txt")).then((value) {
+      _surname = value.split("\r\n");
+      if(_maleNames != null && _femaleNames != null){
+        _loadFinished = true;
+      }
     });
     _random = Random();
   }
 
-  String getRandomName(Gender gender){
+  static bool get namesLoaded => _loadFinished == true;
+
+  static String getRandomName(Gender gender){
     if(_femaleNames != null && _maleNames != null && _surname != null) {
       String name = "";
       if (gender == Gender.male) {
