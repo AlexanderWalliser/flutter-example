@@ -3,6 +3,7 @@ import 'package:flutter_example/entities/message.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/live_chat_model.dart';
 import 'package:flutter_example/widgets/chat_message.dart';
+import 'package:flutter_example/widgets/profile.dart';
 import 'package:provider/provider.dart';
 
 class LiveChatScreen extends StatefulWidget {
@@ -21,6 +22,19 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Live Chat"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+                Icons.account_circle
+            ),
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> ProfileScreen())
+              );
+            },
+          )
+        ],
       ),
       body: Column(children: <Widget>[
         Flexible(child: Consumer<LiveChatModel>(
@@ -34,6 +48,7 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                 message: messages[index],
                 isMyMessage: messages[index].author ==
                     context.read<AccountModel>().account.id,
+                ownPicture: context.read<AccountModel>().picture,
               ),
               itemCount: messages.length,
             );

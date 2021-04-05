@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/entities/gender.dart';
 import 'package:flutter_example/models/account_model.dart';
@@ -46,7 +45,6 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
           )
         ],
       ),
-      backgroundColor: ColorScheme.light().background,
       body: Padding(
         padding: EdgeInsets.only(left: 10, top: 10, right: 10),
         child: Column(
@@ -61,7 +59,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: NetworkImage(account.picturePath),
+                      image: context.read<AccountModel>().picture,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -78,7 +76,9 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: "Alter"),
+              decoration: const InputDecoration(
+                  labelText: "Alter",
+              ),
               initialValue: account.age.toString(),
               keyboardType: TextInputType.number,
               autocorrect: false,
@@ -96,7 +96,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
                     alignment: Alignment.centerLeft,
                     child: Text("Bevorzugtes Geschlecht",
                       style: TextStyle(
-                          color: Colors.grey.shade600,
+                          color: Colors.grey.shade500,
                           fontSize: 12
                       ),
                     ),

@@ -46,6 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   message: messages[index],
                   isMyMessage: messages[index].author ==
                       context.read<AccountModel>().account.id,
+                  ownPicture: context.read<AccountModel>().picture,
                 ),
                 itemCount: messages.length,
               );

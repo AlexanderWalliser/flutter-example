@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/match_model.dart';
 import 'package:flutter_example/widgets/chat_screen.dart';
+import 'package:flutter_example/widgets/profile.dart';
 import 'package:provider/provider.dart';
 
 class MatchScreen extends StatefulWidget {
@@ -13,7 +14,23 @@ class _MatchScreenState extends State<MatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Test")),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Matches"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+                Icons.account_circle
+            ),
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> ProfileScreen())
+              );
+            },
+          )
+        ],
+      ),
       body: Consumer<MatchModel>(builder: (context, model, child) {
         return ListView.separated(
           itemCount: model.persons.length,

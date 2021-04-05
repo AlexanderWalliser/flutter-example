@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_example/models/theme_model.dart';
 import 'package:flutter_example/widgets/app_layout.dart';
+import 'package:provider/provider.dart';
 
 class App extends StatefulWidget {
   @override
@@ -18,6 +20,7 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AppLayout(),
+      theme: Provider.of<ThemeModel>(context,listen: true).getTheme(),
     );
   }
 }

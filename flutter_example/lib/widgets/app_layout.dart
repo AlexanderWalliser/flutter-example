@@ -25,7 +25,7 @@ class _AppLayoutState extends State<AppLayout> {
           BottomNavigationBarItem(
               icon: Icon(Icons.switch_account), label: "Matches"),
           BottomNavigationBarItem(icon: Icon(Icons.swipe), label: "Find"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Live Chat"),
         ],
       ),
       body: getPage(_currentIndex),

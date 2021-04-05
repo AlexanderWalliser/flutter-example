@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
+import 'package:flutter_example/models/theme_model.dart';
+import 'package:provider/provider.dart';
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage({@required this.message,@required  this.isMyMessage});
+  ChatMessage({@required this.message,@required  this.isMyMessage, @required this.ownPicture});
 
   final Message message;
   final bool isMyMessage;
+  final ImageProvider ownPicture;
 
   List<Widget> otherMessage(context) {
     return <Widget>[
@@ -48,7 +51,7 @@ class ChatMessage extends StatelessWidget {
       Container(
         margin: EdgeInsets.only(left: 16.0),
         child: CircleAvatar(
-            backgroundImage: NetworkImage(message.imageUrl),
+            backgroundImage: ownPicture,
         ),
       ),
     ];

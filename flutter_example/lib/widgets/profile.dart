@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/models/account_model.dart';
+import 'package:flutter_example/models/theme_model.dart';
 import 'package:flutter_example/widgets/profile_update.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -22,10 +21,9 @@ class _ProfileScreen extends State<ProfileScreen> {
     account = context.watch<AccountModel>().account;
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Profil"),
-      ),
-        backgroundColor: ColorScheme.light().background,
+        appBar: AppBar(
+          title: Text("Profil"),
+        ),
         body: Container(
           width: size.width,
           height: size.height,
@@ -41,7 +39,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: NetworkImage(account.picturePath),
+                      image: context.read<AccountModel>().picture,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -60,30 +58,37 @@ class _ProfileScreen extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.settings,
-                            size: 35,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            "SETTINGS",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          context.read<ThemeModel>().toggleTheme();
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.remove_red_eye,
+                              size: 35,
                             ),
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Text(
+                              "THEME",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -119,9 +124,9 @@ class _ProfileScreen extends State<ProfileScreen> {
                     GestureDetector(
                         onTap: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context)=> ProfileUpdateScreen())
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfileUpdateScreen()));
                         },
                         child: Column(
                           children: [

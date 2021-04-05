@@ -28,7 +28,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
         .size;
 
     return Scaffold(
-        backgroundColor: Colors.white,
         body: Container(
           height: size.height,
           child: TinderSwapCard(

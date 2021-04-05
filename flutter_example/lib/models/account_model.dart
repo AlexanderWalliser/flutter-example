@@ -1,4 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/account.dart';
 
 import 'package:flutter_example/entities/gender.dart';
@@ -29,6 +31,15 @@ class AccountModel extends ChangeNotifier {
         25);
     _save();
     notifyListeners();
+  }
+
+  ImageProvider get picture{
+    if(_account.picturePath == "https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png"){
+      return NetworkImage(_account.picturePath);
+    }
+    else{
+      return FileImage(new File(_account.picturePath));
+    }
   }
 
   set account(Account account) {
