@@ -4,6 +4,7 @@ import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/explore_model.dart';
 import 'package:flutter_example/models/live_chat_model.dart';
 import 'package:flutter_example/models/match_model.dart';
+import 'package:flutter_example/models/names_model.dart';
 import 'package:flutter_example/models/theme_model.dart';
 import 'package:flutter_example/widgets/app.dart';
 import 'package:provider/provider.dart';
@@ -31,12 +32,14 @@ class _ProviderApp extends State<ProviderApp> {
         MatchModel(FileStorage("match", getApplicationDocumentsDirectory));
     var themeModel =
         ThemeModel(FileStorage("theme",getApplicationDocumentsDirectory));
+    var namesModel = NameModel();
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => matchModel),
       ChangeNotifierProvider(create: (_) => accountModel),
       ChangeNotifierProvider(create: (_) => exploreModel),
       ChangeNotifierProvider(create: (_) => liveChatModel),
       ChangeNotifierProvider(create: (_) => themeModel),
+      ChangeNotifierProvider(create: (_) => namesModel),
     ], child: App());
   }
 }

@@ -42,3 +42,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/credentials.json
+    - assets/femaleNames.txt
+    - assets/maleNames.txt
+    - assets/surNames.txt
