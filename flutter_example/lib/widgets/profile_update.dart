@@ -17,14 +17,14 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
   String genderValue = "";
 
   @override
+  void initState() {
+    account =  context.read<AccountModel>().account;
+    genderValue = account.preferedGender == Gender.male ? "Männlich" : "Weiblich";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if(account == null){
-      account =  context.read<AccountModel>().account;
-    }
-    if(genderValue == ""){
-      genderValue =
-      account.preferedGender == Gender.male ? "Männlich" : "Weiblich";
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Profil bearbeiten"),
@@ -84,7 +84,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
               autocorrect: false,
               onChanged: (String newvalue) {
                 changed = true;
-                account.age = int.parse(newvalue);
+                account.age = int.tryParse(newvalue);
               },
             ),
 
@@ -111,18 +111,15 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
   }
 
   goBack() async {
-    bool exit = true;
     if (changed == true) {
       Widget cancelButton = TextButton(
           onPressed: () {
-            exit = false;
-            Navigator.pop(context);
+            Navigator.of(context).pop(false);
           },
           child: Text("Nein"));
       Widget continueButton = TextButton(
           onPressed: () {
-            exit = true;
-            Navigator.pop(context);
+            Navigator.of(context).pop(false);
           },
           child: Text("Ja"));
 
@@ -137,10 +134,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
         builder: (BuildContext context) {
           return alert;
         },
-      );
-    }
-    if (exit == true) {
-      Navigator.pop(context);
+      ).then((value) => Navigator.pop(context));
     }
   }
 

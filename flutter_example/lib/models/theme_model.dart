@@ -1,37 +1,34 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_example/entities/message.dart';
-import 'package:flutter_example/entities/person.dart';
-import 'package:flutter_example/file_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeModel extends ChangeNotifier{
+class ThemeModel extends ChangeNotifier {
   ThemeData _light;
   ThemeData _dark;
-  ThemeData _current;
+  bool _isLight;
 
-  FileStorage _fileStorage;
-
-  ThemeModel(this._fileStorage) {
+  ThemeModel() {
     this._light = ThemeData.light();
     this._dark = ThemeData.dark();
-    _current = _dark;
-    load();
+    _isLight = true;
+    _save().then((value) => notifyListeners());
   }
 
-  void _save() {
-  }
-  void load(){
-
-  }
-
-  void toggleTheme(){
-    _current = _current == _dark ? _light: _dark;
-    _save();
-    notifyListeners();
+  Future _save() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("theme", _isLight);
   }
 
-  ThemeData getTheme(){
-    return _current;
+  Future load() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isLight = prefs.get("theme") ??  _isLight;
+  }
+
+  void toggleTheme() {
+    _isLight = ! _isLight;
+    _save().then((value) => notifyListeners());
+  }
+
+  ThemeData getTheme() {
+    return _isLight ? _light : _dark;
   }
 }
