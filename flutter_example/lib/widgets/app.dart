@@ -22,7 +22,7 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AppLayout(),
-      theme: Provider.of<ThemeModel>(context,listen: true).getTheme(),
+      theme: context.watch<ThemeModel>().getTheme(),
     );
   }
 }

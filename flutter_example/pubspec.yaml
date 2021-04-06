@@ -45,3 +45,5 @@ flutter:
     - assets/femaleNames.txt
     - assets/maleNames.txt
     - assets/surNames.txt
+    - assets/maleNames2.txt
+    - assets/femaleNames2.txt

@@ -3,16 +3,18 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/file_storage.dart';
+import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/services/person_service.dart';
 
 class ExploreModel extends ChangeNotifier {
+  AccountModel _accountModel;
   List<Person> _persons = [];
 
   UnmodifiableListView<Person> get persons => UnmodifiableListView(_persons);
 
   FileStorage<Person> _fileStorage;
 
-  ExploreModel(this._fileStorage) {
+  ExploreModel(this._fileStorage, this._accountModel) {
     _fileStorage.load((json) => Person.fromJson(json)).then((value) {
       if (value != null) {
         _persons = value;
@@ -36,7 +38,7 @@ class ExploreModel extends ChangeNotifier {
   }
 
   _generatePerson() async {
-    _persons.add(await PersonService.getPerson("female"));
+    _persons.add(await PersonService.getPerson(_accountModel.account));
   }
 
   removePerson(Person person) async {

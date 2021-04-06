@@ -23,15 +23,15 @@ class _ProviderApp extends State<ProviderApp> {
 
   @override
   Widget build(BuildContext context) {
-    var exploreModel =
-        ExploreModel(FileStorage("explore", getApplicationDocumentsDirectory));
-    var liveChatModel = LiveChatModel();
     var accountModel =
         AccountModel(FileStorage("account", getApplicationDocumentsDirectory));
+    var exploreModel = ExploreModel(
+        FileStorage("explore", getApplicationDocumentsDirectory), accountModel);
+    var liveChatModel = LiveChatModel();
     var matchModel =
         MatchModel(FileStorage("match", getApplicationDocumentsDirectory));
     var themeModel =
-        ThemeModel(FileStorage("theme",getApplicationDocumentsDirectory));
+        ThemeModel(FileStorage("theme", getApplicationDocumentsDirectory));
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => matchModel),
       ChangeNotifierProvider(create: (_) => accountModel),

@@ -40,7 +40,6 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
         Flexible(child: Consumer<LiveChatModel>(
           builder: (context, model, child) {
             var messages = model.messages.reversed.toList();
-            _textController.clear();
             return ListView.builder(
               padding: EdgeInsets.all(8.0),
               reverse: true,

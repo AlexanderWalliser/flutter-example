@@ -18,13 +18,13 @@ class NameModel {
 
 
   static init()  {
-    (rootBundle.loadString("assets/femaleNames.txt")).then((value) {
+    (rootBundle.loadString("assets/femaleNames2.txt")).then((value) {
       _femaleNames = value.split("\r\n");
       if(_maleNames != null && _surname != null){
         _loadFinished = true;
       }
     });
-    (rootBundle.loadString("assets/maleNames.txt")).then((value) {
+    (rootBundle.loadString("assets/maleNames2.txt")).then((value) {
       _maleNames = value.split("\r\n");
       if(_femaleNames != null && _surname != null){
         _loadFinished = true;
@@ -50,7 +50,7 @@ class NameModel {
       else {
         name += _femaleNames[_random.nextInt(_femaleNames.length - 1)];
       }
-      name += " " + _surname[_random.nextInt(_surname.length - 1)];
+      //name += " " + _surname[_random.nextInt(_surname.length - 1)];
       return name;
     }
     else{
