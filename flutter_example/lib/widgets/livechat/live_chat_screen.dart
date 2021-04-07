@@ -24,14 +24,10 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
         title: Text("Live Chat"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
-                Icons.account_circle
-            ),
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> ProfileScreen())
-              );
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
           )
         ],
@@ -94,7 +90,8 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
     context.read<LiveChatModel>().create(Message(
         name: context.read<AccountModel>().account.name,
         text: text,
-        imageUrl: context.read<AccountModel>().account.picturePath,
+        imageUrl:
+            "https://st3.depositphotos.com/13159112/17145/v/600/depositphotos_171453724-stock-illustration-default-avatar-profile-icon-grey.jpg",
         author: context.read<AccountModel>().account.id));
   }
 }

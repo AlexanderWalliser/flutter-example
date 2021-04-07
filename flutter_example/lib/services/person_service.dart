@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/entities/person.dart';
-import 'file:///C:/Users/Alex/gitrepositories/flutter-example/flutter_example/lib/services/name_servicel.dart';
+import 'package:flutter_example/services/name_servicel.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
