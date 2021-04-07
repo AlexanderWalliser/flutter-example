@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/file_storage.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/explore_model.dart';
 import 'package:flutter_example/models/live_chat_model.dart';
 import 'package:flutter_example/models/match_model.dart';
 import 'package:flutter_example/models/theme_model.dart';
+import 'package:flutter_example/storage/file_storage.dart';
 import 'package:flutter_example/widgets/app.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';

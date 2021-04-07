@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/account.dart';
 
 import 'package:flutter_example/entities/gender.dart';
-import 'package:flutter_example/file_storage.dart';
+import 'package:flutter_example/storage/file_storage.dart';
+
 
 class AccountModel extends ChangeNotifier {
   Account _account;

@@ -21,7 +21,7 @@ class LiveChatModel extends ChangeNotifier {
   void _getData() {
     load();
     print("Connect to Stream");
-    var subscription = SseSubscriber("http://10.0.2.2:8080/chat/stream",
+    var subscription = SseSubscriber("https://chat.plantastic.at/chat/stream",
         (json) => Message.fromJson(json)).stream.listen((message) {
           _messages.add(message);
           notifyListeners();

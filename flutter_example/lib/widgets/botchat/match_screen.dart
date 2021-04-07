@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/match_model.dart';
-import 'package:flutter_example/widgets/chat_screen.dart';
-import 'package:flutter_example/widgets/profile.dart';
+import 'package:flutter_example/widgets/botchat/chat_screen.dart';
+import 'package:flutter_example/widgets/profile/profile.dart';
 import 'package:provider/provider.dart';
 
 class MatchScreen extends StatefulWidget {

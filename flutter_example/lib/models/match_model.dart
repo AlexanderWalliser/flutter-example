@@ -1,9 +1,8 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
 import 'package:flutter_example/entities/person.dart';
-import 'package:flutter_example/file_storage.dart';
+import 'package:flutter_example/storage/file_storage.dart';
 
 class MatchModel extends ChangeNotifier {
   List<Person> _persons = [];

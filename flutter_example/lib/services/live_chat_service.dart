@@ -4,7 +4,7 @@ import 'package:flutter_example/entities/message.dart';
 import 'package:http/http.dart' as http;
 
 class LiveChatService {
-  static String _connection = "http://10.0.2.2:8080/chat";
+  static String _connection = "https://chat.plantastic.at/chat";
 
   static Future<List<Message>> getLiveMessages() async {
     return http.get(_connection + "").then((response) {

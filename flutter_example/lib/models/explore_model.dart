@@ -1,10 +1,9 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/person.dart';
-import 'package:flutter_example/file_storage.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/services/person_service.dart';
+import 'package:flutter_example/storage/file_storage.dart';
 
 class ExploreModel extends ChangeNotifier {
   AccountModel _accountModel;

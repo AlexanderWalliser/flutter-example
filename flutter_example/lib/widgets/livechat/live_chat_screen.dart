@@ -3,7 +3,7 @@ import 'package:flutter_example/entities/message.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/live_chat_model.dart';
 import 'package:flutter_example/widgets/chat_message.dart';
-import 'package:flutter_example/widgets/profile.dart';
+import 'package:flutter_example/widgets/profile/profile.dart';
 import 'package:provider/provider.dart';
 
 class LiveChatScreen extends StatefulWidget {

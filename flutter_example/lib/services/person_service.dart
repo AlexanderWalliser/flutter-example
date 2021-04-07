@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/entities/person.dart';
-import 'package:flutter_example/models/names_model.dart';
+import 'file:///C:/Users/Alex/gitrepositories/flutter-example/flutter_example/lib/services/name_servicel.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
@@ -16,7 +16,7 @@ class PersonService {
     if (response.statusCode == 200) {
       Person person = Person.fromJson(json.decode(response.body));
       person.id = Uuid().v4();
-      person.name = NameModel.getRandomName(account.preferedGender);
+      person.name = NameService.getRandomName(account.preferedGender);
       person.messages = [];
       return person;
     } else {

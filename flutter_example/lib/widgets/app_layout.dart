@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/widgets/explore_screen.dart';
-import 'package:flutter_example/widgets/live_chat_screen.dart';
-import 'package:flutter_example/widgets/match_screen.dart';
+import 'package:flutter_example/widgets/botchat/match_screen.dart';
+import 'package:flutter_example/widgets/explore/explore_screen.dart';
+import 'package:flutter_example/widgets/livechat/live_chat_screen.dart';
 
 class AppLayout extends StatefulWidget {
   @override

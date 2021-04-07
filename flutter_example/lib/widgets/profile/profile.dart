@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/theme_model.dart';
-import 'package:flutter_example/widgets/profile_update.dart';
+import 'package:flutter_example/widgets/profile/profile_update.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 

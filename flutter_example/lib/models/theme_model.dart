@@ -7,10 +7,9 @@ class ThemeModel extends ChangeNotifier {
   bool _isLight;
 
   ThemeModel() {
-    this._light = ThemeData.light();
+    this._light = ThemeData(primarySwatch: Colors.deepOrange);
     this._dark = ThemeData.dark();
     _isLight = true;
-    _save().then((value) => notifyListeners());
   }
 
   Future _save() async{

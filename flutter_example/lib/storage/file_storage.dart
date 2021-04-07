@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter_example/entities/entity.dart';
 
 class FileStorage<T extends Entity> {
