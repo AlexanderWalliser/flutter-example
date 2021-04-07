@@ -15,7 +15,7 @@ class MatchModel extends ChangeNotifier {
     _fileStorage.load((json) => Person.fromJson(json)).then((value) {
       _persons = value;
       notifyListeners();
-    }).catchError((_) => _persons = []);
+    }).catchError((_) => _persons.clear());
   }
 
   void _save() {

@@ -2,6 +2,8 @@ import 'package:flutter_example/entities/entity.dart';
 import 'package:flutter_example/entities/message.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
+
+import 'gender.dart';
 part 'person.g.dart';
 
 @JsonSerializable()
@@ -9,7 +11,7 @@ class Person implements Entity{
   String id;
   String name;
   int age;
-  String gender;
+  Gender gender;
   @JsonKey(name: "image_url")
   String imageUrl;
   List<Message> messages;
@@ -26,8 +28,7 @@ class Person implements Entity{
     }
   }
 
-  @override
-  int get hashCode => super.hashCode;
+
 
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
   Map<String, dynamic> toJson() => _$PersonToJson(this);

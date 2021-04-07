@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_example/entities/message.dart';
-import 'package:flutter_example/models/theme_model.dart';
-import 'package:provider/provider.dart';
 
 class ChatMessage extends StatelessWidget {
   ChatMessage({@required this.message,@required  this.isMyMessage, @required this.ownPicture});

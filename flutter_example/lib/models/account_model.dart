@@ -6,7 +6,6 @@ import 'package:flutter_example/entities/account.dart';
 import 'package:flutter_example/entities/gender.dart';
 import 'package:flutter_example/storage/file_storage.dart';
 
-
 class AccountModel extends ChangeNotifier {
   Account _account;
   FileStorage<Account> _fileStorage;
@@ -25,20 +24,15 @@ class AccountModel extends ChangeNotifier {
   }
 
   void _newAccount() {
-    _account = new Account(
-        "https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png",
-        "Max Mustermann",
-        Gender.male,
-        25);
+    _account = new Account("", "Max Mustermann", Gender.male, 25);
     _save();
     notifyListeners();
   }
 
-  ImageProvider get picture{
-    if(_account.picturePath == "https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png"){
-      return NetworkImage(_account.picturePath);
-    }
-    else{
+  ImageProvider get picture {
+    if (_account.picturePath == null && _account.picturePath == "") {
+      return AssetImage("assets/ProfilePlaceholder.jfif");
+    } else {
       return FileImage(new File(_account.picturePath));
     }
   }
@@ -49,6 +43,7 @@ class AccountModel extends ChangeNotifier {
     this._account.age = account.age;
     this._account.preferedGender = account.preferedGender;
     _save();
+    notifyListeners();
   }
 
   set imagePath(String imagePath) {

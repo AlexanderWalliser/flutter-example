@@ -11,13 +11,13 @@ class NameService {
 
 
   static init()  {
-    (rootBundle.loadString("assets/femaleNames2.txt")).then((value) {
+    (rootBundle.loadString("assets/femaleNames.txt")).then((value) {
       _femaleNames = value.split("\n");
       if(_maleNames != null){
         _loadFinished = true;
       }
     });
-    (rootBundle.loadString("assets/maleNames2.txt")).then((value) {
+    (rootBundle.loadString("assets/maleNames.txt")).then((value) {
       _maleNames = value.split("\n");
       if(_femaleNames != null ){
         _loadFinished = true;

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_example/entities/account.dart';
+import 'package:flutter_example/entities/person.dart';
 import 'package:flutter_example/models/account_model.dart';
 import 'package:flutter_example/models/explore_model.dart';
 import 'package:flutter_example/models/live_chat_model.dart';
@@ -23,12 +25,14 @@ class _ProviderApp extends State<ProviderApp> {
   @override
   Widget build(BuildContext context) {
     var accountModel =
-        AccountModel(FileStorage("account", getApplicationDocumentsDirectory));
+        AccountModel(FileStorage<Account>("account", getApplicationDocumentsDirectory));
     var exploreModel = ExploreModel(
-        FileStorage("explore", getApplicationDocumentsDirectory), accountModel);
+        FileStorage<Person>("explore", getApplicationDocumentsDirectory), accountModel);
     var liveChatModel = LiveChatModel();
     var matchModel =
-        MatchModel(FileStorage("match", getApplicationDocumentsDirectory));
+        MatchModel(FileStorage<Person>("match", getApplicationDocumentsDirectory));
+
+
     var themeModel =
         ThemeModel();
     return MultiProvider(providers: [

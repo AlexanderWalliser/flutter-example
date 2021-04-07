@@ -12,9 +12,6 @@ class Message {
   Message({this.name, this.text, this.imageUrl,this.author});
 
 
-  @override
-  int get hashCode => super.hashCode;
-
   factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
   Map<String, dynamic> toJson() => _$MessageToJson(this);
 }
