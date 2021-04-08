@@ -24,16 +24,16 @@ class AccountModel extends ChangeNotifier {
   }
 
   void _newAccount() {
-    _account = new Account("", "Max Mustermann", Gender.male, 25);
+    _account = Account("", "Max Mustermann", Gender.male, 25);
     _save();
     notifyListeners();
   }
 
   ImageProvider get picture {
-    if (_account.picturePath == null && _account.picturePath == "") {
+    if (_account.picturePath == null || _account.picturePath == "") {
       return AssetImage("assets/ProfilePlaceholder.jfif");
     } else {
-      return FileImage(new File(_account.picturePath));
+      return FileImage(File(_account.picturePath));
     }
   }
 

@@ -32,21 +32,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
           height: size.height,
           child: TinderSwapCard(
             totalNum: persons.length,
-            maxWidth: MediaQuery
-                .of(context)
-                .size
+            maxWidth:size
                 .width,
-            maxHeight: MediaQuery
-                .of(context)
-                .size
+            maxHeight:size
                 .height * 0.92,
-            minWidth: MediaQuery
-                .of(context)
-                .size
+            minWidth:size
                 .width * 0.9,
-            minHeight: MediaQuery
-                .of(context)
-                .size
+            minHeight: size
                 .height * 0.9,
             cardBuilder: (context, index) =>
                 Container(
