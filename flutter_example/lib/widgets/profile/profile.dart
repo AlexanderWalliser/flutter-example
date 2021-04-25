@@ -20,6 +20,7 @@ class _ProfileScreen extends State<ProfileScreen> {
         return Scaffold(
             appBar: AppBar(
               title: Text("Profil"),
+              centerTitle: true,
             ),
             body: Container(
               width: size.width,

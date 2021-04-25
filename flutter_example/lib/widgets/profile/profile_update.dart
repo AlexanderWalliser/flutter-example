@@ -26,6 +26,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Profil bearbeiten"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -105,7 +106,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
         ));
   }
 
-  goBack() async {
+  goBack() {
     if (changed == true) {
       Widget cancelButton = TextButton(
           onPressed: () {
@@ -124,7 +125,7 @@ class _ProfileUpdateScreen extends State<ProfileUpdateScreen> {
             "Möchtest du wirklich zurück ohne die Änderungen zu speichern?"),
         actions: [cancelButton, continueButton],
       );
-      await showDialog(
+      showDialog(
         context: context,
         builder: (BuildContext context) {
           return alert;
